@@ -1,0 +1,67 @@
+diff --git a/Configuration.h b/Configuration.h
+index ef78975..1e4ecd8 100644
+--- a/Configuration.h
++++ b/Configuration.h
+@@ -145,7 +145,7 @@
+ //#define BLUETOOTH
+ 
+ // Name displayed in the LCD "Ready" message and Info menu
+-#define CUSTOM_MACHINE_NAME "Ender-3 Max 4.2.2"
++#define CUSTOM_MACHINE_NAME "Ender-3 Max 4.2.2 (CRTouch) Sudhan"
+ 
+ // Printer's unique ID, used by some programs to differentiate between machines.
+ // Choose your own or use a service like https://www.uuidgenerator.net/version4
+@@ -1039,7 +1039,7 @@
+ //#define Z_MIN_PROBE_USES_Z_MIN_ENDSTOP_PIN
+ 
+ // Force the use of the probe for Z-axis homing
+-//#define USE_PROBE_FOR_Z_HOMING // ENABLE FOR BLTOUCH
++#define USE_PROBE_FOR_Z_HOMING // ENABLE FOR BLTOUCH
+ 
+ /**
+  * Z_MIN_PROBE_PIN
+@@ -1093,7 +1093,7 @@
+ /**
+  * The BLTouch probe uses a Hall effect sensor and emulates a servo.
+  */
+-//#define BLTOUCH // ENABLE FOR BLTOUCH
++#define BLTOUCH // ENABLE FOR BLTOUCH
+ 
+ /**
+  * MagLev V4 probe by MDD
+@@ -1195,8 +1195,12 @@
+  *     | 4         | T <-- Example "4" ( left-, front-)
+  *     |    [-]    |
+  *     O-- FRONT --+
++ * 
++ *  Stock Firmware with CRTouch shows X:100, Y: 161 when auto homing ...
++ *  Which means the probe is (150-100) and (150-161) = (at 50, -11)
++ *  (i.e.) to right and front of nozzle...
+  */
+-#define NOZZLE_TO_PROBE_OFFSET { 10, 10, 0 }
++#define NOZZLE_TO_PROBE_OFFSET { 50, -11, 0 }
+ 
+ // Most probes should stay away from the edges of the bed, but
+ // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
+@@ -1563,7 +1567,7 @@
+  */
+ //#define AUTO_BED_LEVELING_3POINT
+ //#define AUTO_BED_LEVELING_LINEAR
+-//#define AUTO_BED_LEVELING_BILINEAR  // ENABLE FOR BLTOUCH
++#define AUTO_BED_LEVELING_BILINEAR  // ENABLE FOR BLTOUCH
+ //#define AUTO_BED_LEVELING_UBL
+ //#define MESH_BED_LEVELING
+ 
+diff --git a/Configuration_adv.h b/Configuration_adv.h
+index 06da038..da050c7 100644
+--- a/Configuration_adv.h
++++ b/Configuration_adv.h
+@@ -1282,7 +1282,7 @@
+ 
+   // Add Probe Z Offset calibration to the Z Probe Offsets menu
+   #if HAS_BED_PROBE
+-    //#define PROBE_OFFSET_WIZARD
++    #define PROBE_OFFSET_WIZARD
+     #if ENABLED(PROBE_OFFSET_WIZARD)
+       //
+       // Enable to init the Probe Z-Offset when starting the Wizard.
